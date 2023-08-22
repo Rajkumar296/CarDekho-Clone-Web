@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Description"
+        content="The most searched cars · Maruti Swift. Rs5.92 - 8.85 Lakh View Offers · Maruti Baleno. Rs6.49 - 9.83 Lakh · Tata Tiago. Rs5.45 - 7.90 Lakh · Tata Altroz. Rs6.35 - ...">
+    <meta name="description" itemprop="description"
+        content="Thinking of buying a car? At CarDekho.com, buy new and used cars, search by filter and preferences, compare cars, read latest news and updates, see 360 views & more!">
+    <link rel="Shortcut icon" href="cardekho.jpg" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <title>CarDekho: New Cars, Car Prices, Buy & Sell Used Cars in India</title>
+</head>
+<style>
+    /* The Modal (background) */
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+        padding-top: 60px;
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5px auto;
+        /* 15% from the top and centered */
+        border: 1px solid #888;
+        width: 80%;
+        /* Could be more or less, depending on screen size */
+    }
+
+    /* The Close Button */
+    .close {
+        /* Position it in the top right corner outside of the modal */
+        position: absolute;
+        right: 25px;
+        top: 0;
+        color: #000;
+        font-size: 35px;
+        font-weight: bold;
+    }
+
+    /* Close button on hover */
+    .close:hover,
+    .close:focus {
+        color: red;
+        cursor: pointer;
+    }
+
+    /* Add Zoom Animation */
+    .animate {
+        -webkit-animation: animatezoom 0.6s;
+        animation: animatezoom 0.6s
+    }
+
+    @-webkit-keyframes animatezoom {
+        from {
+            -webkit-transform: scale(0)
+        }
+
+        to {
+            -webkit-transform: scale(1)
+        }
+    }
+
+    @keyframes animatezoom {
+        from {
+            transform: scale(0)
+        }
+
+        to {
+            transform: scale(1)
+        }
+    }
+
+    .container {
+        background-color: orange;
+    }
+
+
+
+    * {
+        box-sizing: border-box
+    }
+
+    /* Slideshow container */
+    .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
+    }
+
+    /* Hide the images by default */
+    .mySlides {
+        display: none;
+    }
+
+    /* Next & previous buttons */
+    .prev,
+    .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        margin-top: -22px;
+        padding: 16px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover,
+    .next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Caption text */
+    .text {
+        color: #f2f2f2;
+        font-size: 15px;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 8px;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot {
+        cursor: pointer;
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+    }
+
+    .active,
+    .dot:hover {
+        background-color: #717171;
+    }
+
+    /* Fading animation */
+    .fade {
+        animation-name: fade;
+        animation-duration: 1.5s;
+    }
+
+    @keyframes fade {
+        from {
+            opacity: .4
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+    .container2{
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        right: '0';
+        margin-left: 1%;
+        margin-top: 1%;
+
+    }
+    .container3{
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        right: '0';
+        margin-top: 2%;
+        margin-left: 1%;
+    }
+
+    .headi1{
+        margin-left: 2%;
+    }
+
+    .headi{
+        margin-left: 2%;
+        margin-top: 34%;
+    }
+
+    .card{
+        margin-left: 20px;
+    }
+
+    .card1{
+      margin-left: 40px;
+    }
+
+    .card2{
+      margin-left: 50px;
+    }
+
+    .card3{
+      margin-left: 170px;
+    }
+
+    .footie{
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        right: '0';
+        margin-top: 20%;
+        margin-right: 1%;
+    }
+
+    .mb-2{
+      margin-right: 200px;
+    }
+
+    .headi2{
+      margin-top: 450px;
+      margin-left: 25px;
+    }
+    .icon{
+      display: flex;
+    }
+
+    .last{
+      margin-left: 400px;
+    }
+</style>
+
+<body>
+  <div>
+
+        <hr>
+        <header>
+            <img src="https://stimg.cardekho.com/pwa/img/carDekho-newLogo.svg" alt="" width="170">
+            <input type="search" placeholder="Search Car or Brands eg. Swift, or Maruti"
+                style="width: 500px; margin: center;">
+
+            <select name="Language" id="Language" style="width: 100px;">
+                <option value="English">English</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Urdu">Urdu</option>
+                <option value="తమిళం">తమిళం</option>
+                <option value="పంజాబీ">పంజాబీ</option>
+                <option value="డచ్">డచ్</option>
+            </select>
+            <img src="hear.png" alt="" style="width: 33px; margin:auto"><img src="log in.png" alt=""
+                style="width: 40px; margin:auto">
+            <!-- Button to open the modal login form -->
+            <button onclick="document.getElementById('raj').style.display='block'">Login</button>
+
+            <!-- The Modal -->
+            <div id="raj" class="modal">
+                <span onclick="document.getElementById('raj').style.display='none'" class="close"
+                    title="Close Modal">&times;</span>
+
+                <!-- Modal Content -->
+                <form class="modal-content animate" action="/action_page.php">
+                    <div class="imgcontainer">
+                        <img src="cardekhoads.jpg" alt="Avatar" class="avatar">
+                    </div>
+
+                    <div class="container">
+                        <label for="uname"><b>Username</b></label>
+                        <input type="text" placeholder="Enter Username" name="uname" required>
+
+                        <label for="uname"><b>E-mail</b></label>
+                        <input type="text" placeholder="Enter E-mail" name="email" required>
+
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+
+                        <button type="submit">Login</button>
+                        <label>
+                            <input type="checkbox" checked="checked" name="remember"> Remember me
+                        </label>
+                    </div>
+
+                    <div class="container" style="background-color:#f1f1f1">
+                        <button type="button" onclick="document.getElementById('raj').style.display='none'"
+                            class="cancelbtn">Cancel</button>
+                        <span class="psw">Forgot <a href="#">password?</a></span>
+                    </div>
+                </form>
+            </div>/
+
+
+            <!-- Button to open the modal Registeration form -->
+            <button onclick="document.getElementById('raj').style.display='block'">Register</button>
+
+            <!-- The Modal -->
+            <div id="raj" class="modal">
+                <span onclick="document.getElementById('raj').style.display='none'" class="close"
+                    title="Close Modal">&times;</span>
+
+                <!-- Modal Content -->
+                <form class="modal-content animate" action="/action_page.php">
+                    <div class="imgcontainer">
+                        <img src="cardekhoads.jpg" alt="Avatar" class="avatar">
+                    </div>
+
+                    <div class="container">
+                        <label for="uname"><b>Username</b></label>
+                        <input type="text" placeholder="Enter Username" name="uname" required>
+
+                        <label for="uname"><b>E-mail</b></label>
+                        <input type="text" placeholder="Enter E-mail" name="email" required>
+
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+
+                        <button type="submit">Register</button>
+                        <label>
+                            <input type="checkbox" checked="checked" name="remember"> Remember me
+                        </label>
+                    </div>
+
+                    <div class="container" style="background-color:#f1f1f1">
+                        <button type="button" onclick="document.getElementById('raj').style.display='none'"
+                            class="cancelbtn">Cancel</button>
+                        <span class="psw">Forgot <a href="#">password?</a></span>
+                    </div>
+                </form>
+            </div>
+            <hr>
+            <select name="NEW CAR" id="NEW CAR" style="width: 95px;">
+                <option value="NEW CAR">NEW CAR</option>
+                <option value="Popular Brands">Popular Brands</option>
+                <option value="Latest Cars">Latest Cars</option>
+                <option value="Popular Cars">Popular Cars</option>
+                <option value="Upcoming Cars">Upcoming Cars</option>
+                <option value="BS6 Cars">BS6 Cars</option>
+                <option value="Service Centers">Service Ceters</option>
+            </select> <select name="USED CAR" id="USED CAR" style="width: 97px;">
+                <option value="USED CAR">USED CAR</option>
+                <option value="Cars In Your City">Cars In Your City</option>
+                <option value="CarDekho Used Cars">CarDekho Used Cars</option>
+                <option value="CarDekho Used Car Stores">CarDekho Used Car Stores</option>
+                <option value="Sell Used Car">Sell Used Car</option>
+                <option value="Used Car Valuation">Used Car Valuation</option>
+                <option value="Scrap My Car">Scrap My Car</option>
+                <option value="Used Car Dealers">Used Car Dealers</option>
+                <option value="Used Car Loan">Used Car Loan</option>
+                <option value="My Listing">My Listing</option>
+            </select>
+             <select name="SELL CAR" id="SELL CAR" style="width: 90px;">
+                <option value="SELL CAR">SELL CAR</option>
+                <option value="Sell Car In Your City"></option>
+                <option value="Used Car Valuation">Used Car Valuation</option>
+                <option value="Sell Car by Brands">Sell Car by Brands</option>
+                <option value="Scrap my car">Scrap my car</option>
+                <option value="How it works?"></option>
+                <option value="FAQs">FAQs</option>
+            </select> <select name="COMPARE CARS" id="COMPARE CARS">
+                <option value="COMPARE CARS">COMPARE CARS</option>
+            </select> <select name="NEWS & REVIEW" id="NEWS & REVIEW">
+                <option value="NEWS & AND REVIEW">NEWS & AND REVIEW</option>
+                <option value="Car News">Car News</option>
+                <option value="Feature Stories">Feature Stories</option>
+                <option value="Car Selling Tips">Car Selling Tips</option>
+                <option value="User Reviews">User Reviews</option>
+                <option value="Road Test">Road Test</option>
+                <option value="Video Reviews">Video Reviews</option>
+                <option value="Write a Review">Write a Review</option>
+                <option value="Car Visual Stories">Car Visual Stories</option>
+            </select> <select name="CARDEKHO VENTURES" id="CARDEKHO VENTURES">
+                <option value="CARDEKHO VENTURES">CARDEKHO VENTURES</option>
+                <option value="Car Insurance">Car Insurance</option>
+                <option value="Health Insurance">Health Insurance</option>
+                <option value="Term Life Insurance">Term Life Insurance</option>
+                <option value="Loan Against Car">Loan Against Car</option>
+                <option value="Car Tyres">Car Tyres</option>
+                <option value="Used Car Loan">Used Car Loan</option>
+                <option value="New Car Loan">New Car Loan</option>
+            </select>
+            <select name="MORE" id="MORE"  style="width: 90px;">
+                <option value="MORE">MORE</option>
+                <option value="Car Loan">Car Loan</option>
+                <option value="EMI Calculator">EMI Calculator</option>
+                <option value="Ask A Question">Ask A Question</option>
+                <option value="Careers with us">Careers with us</option>
+            </select>
+            <img src="location.png" alt=""width="20px">Select City
+        </header>
+        <hr>
+    </div>
+    <div class="container1 mx-30">
+    <marquee behavior="scroll" direction="left">
+        <img src="./carImg/skoda.jpg" width="125" height="82" alt="">
+        <img src="./carImg/cardekho2.jpg" width="125" height="82" alt="">
+        <img src="./carImg/cardekho3.jpg" width="125" height="82" alt="">
+        <img src="./carImg/cardekho4.webp" width="125" height="82" alt="">
+        <img src="./carImg/cardekho5.jpg" width="125" height="82" alt="">
+        <img src="./carImg/Skoda1.jpg" width="125" height="82" alt="">
+        <img src="./carImg/cardekho6.webp" width="125" height="82" alt="">
+        <img src="./carImg/cardekho7.jpg" width="125" height="82" alt="">
+    </marquee>
+</div>
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="./carImg/skoda.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="./carImg/Skoda1.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="./carImg/cardekho6.webp" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>   
+       <div style="width: 560px; margin-right: auto;">
+        <video controls autoplay src="videoplayback.mp4" width="1000px" height="300px"></video><br>
+    </div>
+
+    <img src="cardekhoads.jpg" width="1000" height="100" alt="">
+    <div class="headi1">
+    <h2>The most searched cars</h2>
+</div>
+    <div class="container2">
+    <div class="card" style="width: 15rem;">
+        <img src="./carImg/swift.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Maruti Swift</h5>
+          <p class="card-text">Rs 5.99 - 9.03 Lakh</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div>
+      </div>
+    <div class="card" style="width: 15rem;">
+        <img src="./carImg/tata altroz.avif" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Tata Altroz</h5>
+          <p class="card-text">Rs 6.60 - 10.74 Lakh</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div>
+      </div>
+    <div class="card" style="width: 15rem;">
+        <img src="./carImg/baleno.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Maruti Baleno</h5>
+          <p class="card-text">Rs 6.61 - 9.88 Lakh</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div>
+      </div>
+    <div class="card" style="width: 15rem;">
+        <img src="./carImg/tata tiago.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Tata Tiago</h5>
+          <p class="card-text">Rs 5.60 - 8.11 Lakh</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="card" style="width: 15rem;">
+        <img src="./carImg/cardekho6.webp" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Maruti Baleno</h5>
+          <p class="card-text">Rs6.61 - 9.88 Lakh*</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div> -->
+      </div>
+      <div class="headi">
+      <h2>Recommended Cars For You</h2> 
+    </div>
+      <div class="container3">
+    <div class="card" style="width: 15rem;">
+        <img src="./carImg/tata tiago.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Tata Tiago</h5>
+          <p class="card-text">Rs 5.60 - 8.11 Lakh</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div>
+      </div>
+    <div class="card" style="width: 15rem;">
+        <img src="./carImg/baleno.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Maruti Baleno</h5>
+          <p class="card-text">Rs 6.61 - 9.88 Lakh*</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div>
+      </div>
+    <div class="card" style="width: 15rem;">
+        <img src="./carImg/hyundai i20.avif" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Hyundai i20</h5>
+          <p class="card-text">Rs 7.46 - 11.88 Lakh</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div>
+      </div>
+    <div class="card" style="width: 18rem;">
+        <img src="./carImg/skoda.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Skoda Kushaq</h5>
+          <p class="card-text">Rs 11.59 - 19.69 Lakh</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div>
+      </div>
+    </div>
+
+
+      <div class="headi">
+      <h2>Latest Cars</h2> 
+    </div>
+      <div class="container3">
+    <div class="card" style="width: 12.5rem;">
+        <img src="./carImg/BMW Z4.avif" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">BMW Z4</h5>
+          <p class="card-text">Rs 89.30 Lakh</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div>
+      </div>
+    <div class="card" style="width: 15rem;">
+        <img src="./carImg/TOYOTA GALANZA.jpg" class="card-img-top" alt="..">
+        <div class="card-body">
+          <h5 class="card-title">Toyota Galanza</h5>
+          <p class="card-text">Rs 6.71 - 10 Lakh</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div>
+      </div>
+    <div class="card" style="width: 15rem;">
+        <img src="./carImg/NISSAN MAGNITE.webp" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Nissan Magnite</h5>
+          <p class="card-text">Rs 6 - 11.02 Lakh</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div>
+      </div>
+    <div class="card" style="width: 17rem;">
+        <img src="./carImg/HYUNDAI ALCAZAR.webp" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Hyundai Alcazar</h5>
+          <p class="card-text">Rs 16.77 - 21.13 Lakh</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div>
+      </div>
+    </div>
+
+    
+    
+      <div class="headi">
+      <h2>Upcoming Cars</h2> 
+    </div>
+      <div class="container3">
+    <div class="card" style="width: 19rem;">
+        <img src="./carImg/MARUTI ZIMMI.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Maruti Jimmy</h5>
+          <p class="card-text">Rs 10 - 12.70 Lakh</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div>
+      </div>
+    <div class="card" style="width: 15rem;">
+        <img src="./carImg/MERCEDES BENZ EQS SUV.webp" class="card-img-top" alt="..">
+        <div class="card-body">
+          <h5 class="card-title">Mercedes-Benz-EQS SUV</h5>
+          <p class="card-text">Rs 2 Cr</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div>
+      </div>
+    <div class="card" style="width: 18rem;">
+        <img src="./carImg/JEEP CHEROKEE L.avif" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Jeep Grand Cherokee L</h5>
+          <p class="card-text">Rs 85 Lakh</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div>
+      </div>
+    <div class="card" style="width: 13.5rem;">
+        <img src="./carImg/MERCEDES BENZ AMG GT.webp" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Mercedes-Benz AMG GT</h5>
+          <p class="card-text">Rs 2 Cr</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div>
+      </div>
+    </div>
+
+    
+    
+      <div class="headi">
+      <h2>Electric Cars</h2> 
+    </div>
+      <div class="container3">
+    <div class="card" style="width: 15rem;">
+        <img src="./carImg/MG COMMET EV.avif" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">MG Comet EV</h5>
+          <p class="card-text">Rs 10 - 12.70 Lakh</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div>
+      </div>
+    <div class="card" style="width: 15rem;">
+        <img src="./carImg/KIA EV6.avif" class="card-img-top" alt="..">
+        <div class="card-body">
+          <h5 class="card-title">Kia EV6</h5>
+          <p class="card-text">Rs 2 Cr</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div>
+      </div>
+    <div class="card" style="width: 15rem;">
+        <img src="./carImg/BMW-i7.webp" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">BMW i7</h5>
+          <p class="card-text">Rs 85 Lakh</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div>
+      </div>
+    <div class="card" style="width: 15rem;">
+        <img src="./carImg/Tata Tiago EV.avif" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Tata Tigor EV</h5>
+          <p class="card-text">Rs 2 Cr</p>
+          <a href="#" class="btn btn-outline-primary">Check June Offers</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="headi">
+        <h2>Newly Launched! Car Services</h2> 
+      </div>
+      <div class="container3">
+        <div class="card1" style="width: 8rem;">
+            <img src="./carImg/car-service.jpg" class="card-img-top"alt="">
+            <div class="card-body">
+              <p class="card-text"><h6>Car Servicing</h6></p>
+            </div>
+          </div>
+        <div class="card1" style="width: 8rem;">
+            <img src="./carImg/check challan.jpg" class="card-img-top"alt="">
+            <div class="card-body">
+              <p class="card-text"><h6>Challan Check</h6></p>
+            </div>
+          </div>
+        <div class="card1" style="width: 6rem;">
+            <img src="./carImg/vahan check.jpg" class="card-img-top"alt="">
+            <div class="card-body">
+              <p class="card-text"><h6>Vahan Check</h6></p>
+            </div>
+          </div>
+        <div class="card1" style="width: 7rem;">
+            <img src="./carImg/service history.jpg" class="card-img-top"alt="">
+            <div class="card-body">
+              <p class="card-text"><h6>Service History</h6></p>
+            </div>
+          </div>
+        <div class="card1" style="width: 8.3rem;">
+            <img src="./carImg/connected cars.png" class="card-img-top"alt="">
+            <div class="card-body">
+              <p class="card-text"><h6>Connected Cars</h6></p>
+            </div>
+          </div>
+      </div>
+
+
+      <div class="headi">
+        <h2>Trusted Used Cars By Budget</h2> 
+      </div>
+        <div class="container3">
+      <div class="card" style="width: 13rem;">
+          <img src="./carImg/maruti wagon R.webp" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Maruti Wagon R</h5>
+            <p class="card-text">Starting @ Rs 1.00 Lakh</p>
+            <a href="#" class="btn btn-outline-primary">174 Available Cars</a>
+          </div>
+        </div>
+      <div class="card" style="width: 15rem;">
+          <img src="./carImg/hyundai i10.avif" class="card-img-top" alt="..">
+          <div class="card-body">
+            <h5 class="card-title">Hyundai i10</h5>
+            <p class="card-text">Starting @ Rs 1.00 Lakh</p>
+            <a href="#" class="btn btn-outline-primary">168 Available Cars</a>
+          </div>
+        </div>
+      <div class="card" style="width: 18rem;">
+          <img src="./carImg/Maruti-Suzuki-Swift.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Maruti Swift</h5>
+            <p class="card-text">Starting @ Rs 1.01 Lakh</p>
+            <a href="#" class="btn btn-outline-primary">167 Available Cars</a>
+          </div>
+        </div>
+      <div class="card" style="width: 15rem;">
+          <img src="./carImg/swift.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Maruti Swift Dezire</h5>
+            <p class="card-text">Starting @ Rs 1.27 Lakh</p>
+            <a href="#" class="btn btn-outline-primary">147 Available Cars</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="headi">
+        <h2>Popular Brands</h2> 
+      </div>
+        <div class="container3">
+      <div class="card2" style="width: 5rem;">
+          <img src="./carImg/Maruti logo.png" class="card-img-top" alt="...">
+        </div>
+      <div class="card2" style="width: 5rem;">
+          <img src="./carImg/hyundai logo.jpg" class="card-img-top" alt="..">
+        </div>
+      <div class="card2" style="width: 5rem;">
+          <img src="./carImg/tata-logo.png" class="card-img-top" alt="...">
+        </div>
+        <div class="card2" style="width: 5rem;">
+          <img src="./carImg/mahindra logo.jpg" class="card-img-top" alt=".">
+      </div>
+
+      <div class="container4">
+        <div class="card2" style="width: 5rem;">
+          <img src="./carImg/kia logo.jpg" class="card-img-top" alt=".">
+      </div>
+      </div>
+      <br>
+<div class="footie">             
+                  <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                <h6 class="text-uppercase font-weight-bold mb-4">OVERVIEW</h6>
+                <ul class="list-unstyled mb-0">
+                  <li class="mb-2"><a href="#" class="text-muted">AboutUs</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted">FAQs</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted">PrivacyPolicy</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted">Terms&Conditions</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted">CorporatePolicies</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted">Investors</a></li>
+                </ul>
+              </div>
+              <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                <h6 class="text-uppercase font-weight-bold mb-4">OTHERS</h6>
+                <ul class="list-unstyled mb-0">
+                  <li class="mb-2"><a href="#" class="text-muted">Scrap my car</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted">Advertise with Us</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted">Careers</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted">Customer Care</a></li>
+                </ul>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-lg-0">
+                <h6 class="text-uppercase font-weight-bold mb-4">CONNECT WITH US</h6>
+                <ul class="list-unstyled mb-0">
+                  <li class="mb-2"><a href="#" class="text-muted">support@cardekho.com</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted">Dealer solutions</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted">Used Cars Business</a></li>
+                  <li class="mb-8"><a href="#" class="text-muted">Contact Us</a></li>
+                  <li class="mb-8"><a href="#" class="text-muted">Feedback</a></li>
+                </ul>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="headi2">
+      <h3>Connect:</h3>
+    </div>
+    <div class="icon">
+      <div class="card" style="width: 3rem;">
+        <img src="./CarImg/facebbok icon.png " class="card-img-top" alt="...">
+      </div>
+      <div class="card" style="width: 3rem;">
+        <img src="./CarImg/twitter icon.png " class="card-img-top" alt="...">
+      </div>
+      <div class="card" style="width: 3rem;">
+        <img src="./CarImg/youtube icon.png " class="card-img-top" alt="...">
+      </div>
+      <div class="card" style="width: 3rem;">
+        <img src="./CarImg/instagram icon.png " class="card-img-top" alt="...
+        ">
+      </div>
+      <div class="card" style="width: 3rem;">
+        <img src="./CarImg/linkedin icon.png " class="card-img-top" alt="...">
+      </div>
+      </div>
+
+      <div class="last">
+        <h6>© 2023 Raj Software Pvt. Ltd.</h6>
+      </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
